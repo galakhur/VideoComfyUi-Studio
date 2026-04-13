@@ -20,6 +20,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { KANBAN_COLUMNS } from "@/lib/constants";
+import { GenerationPanel } from "@/components/media/GenerationPanel";
 
 interface Scene {
   id: string;
@@ -172,6 +173,12 @@ export function SceneDetailSheet({
               placeholder="Additional notes..."
             />
           </div>
+
+          {/* Generation Panel */}
+          <GenerationPanel
+            sceneId={scene.id}
+            sceneDescription={form.description}
+          />
 
           <div className="flex gap-2 pt-4">
             <Button onClick={handleSave} className="flex-1">

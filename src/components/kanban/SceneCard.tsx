@@ -1,6 +1,6 @@
 "use client";
 
-import { Film, Image as ImageIcon } from "lucide-react";
+import { Film, Image as ImageIcon, Loader2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
@@ -59,6 +59,12 @@ export function SceneCard({ scene, onClick }: SceneCardProps) {
             <Badge variant="outline" className="gap-1 text-xs">
               <ImageIcon className="h-3 w-3" />
               {scene.keyframes.length}
+            </Badge>
+          )}
+          {scene.status === "GENERATING" && (
+            <Badge variant="outline" className="gap-1 text-xs text-orange-400">
+              <Loader2 className="h-3 w-3 animate-spin" />
+              Generating
             </Badge>
           )}
           {scene.videoUrl && (
