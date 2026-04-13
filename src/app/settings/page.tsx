@@ -11,7 +11,8 @@ import { Slider } from "@/components/ui/slider";
 import { Badge } from "@/components/ui/badge";
 
 export default function SettingsPage() {
-  const [openaiKey, setOpenaiKey] = useState("");
+  const [ollamaUrl, setOllamaUrl] = useState("http://localhost:11434/v1");
+  const [ollamaModel, setOllamaModel] = useState("llama3.1");
   const [anthropicKey, setAnthropicKey] = useState("");
   const [comfyUrl, setComfyUrl] = useState("http://127.0.0.1:8188");
   const [klingKey, setKlingKey] = useState("");
@@ -50,21 +51,28 @@ export default function SettingsPage() {
           <TabsContent value="llm" className="space-y-4">
             <Card>
               <CardHeader>
-                <CardTitle className="text-base">OpenAI</CardTitle>
-                <CardDescription>GPT-4o and DALL-E integration</CardDescription>
+                <CardTitle className="text-base">Ollama (Local)</CardTitle>
+                <CardDescription>Local LLM inference — no API key needed</CardDescription>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="grid gap-2">
-                  <Label>API Key</Label>
+                  <Label>Base URL</Label>
                   <Input
-                    type="password"
-                    value={openaiKey}
-                    onChange={(e) => setOpenaiKey(e.target.value)}
-                    placeholder="sk-..."
+                    value={ollamaUrl}
+                    onChange={(e) => setOllamaUrl(e.target.value)}
+                    placeholder="http://localhost:11434/v1"
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <Label>Model</Label>
+                  <Input
+                    value={ollamaModel}
+                    onChange={(e) => setOllamaModel(e.target.value)}
+                    placeholder="llama3.1"
                   />
                 </div>
                 <Badge variant="outline" className="text-xs">
-                  Set via OPENAI_API_KEY in .env.local
+                  Set via OLLAMA_BASE_URL and OLLAMA_MODEL in .env.local
                 </Badge>
               </CardContent>
             </Card>

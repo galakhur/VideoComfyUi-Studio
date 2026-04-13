@@ -16,7 +16,7 @@ export interface SmartEditInput {
     durationSeconds: number;
   }[];
   outputDir?: string;
-  provider?: "openai" | "claude";
+  provider?: "ollama" | "claude";
 }
 
 interface EditPlan {
@@ -43,7 +43,7 @@ export async function smartEdit(input: SmartEditInput) {
     .join("\n");
 
   const result = await generateText(
-    input.provider || "openai",
+    input.provider || "ollama",
     [
       {
         role: "system",

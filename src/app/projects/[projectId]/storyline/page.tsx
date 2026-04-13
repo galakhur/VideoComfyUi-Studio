@@ -86,7 +86,7 @@ export default function StorylinePage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           projectId,
-          provider: "openai",
+          provider: "ollama",
           description: project?.title || "untitled",
           genre,
           themes: themes.split(",").map((t) => t.trim()).filter(Boolean),

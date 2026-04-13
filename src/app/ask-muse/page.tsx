@@ -39,7 +39,7 @@ export default function AskMusePage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          provider: "openai",
+          provider: "ollama",
           messages: [...messages, userMsg].map((m) => ({
             role: m.role,
             content: m.content,

@@ -77,7 +77,7 @@ export const mcpTools: McpTool[] = [
     inputSchema: { type: "object", properties: {} },
     handler: async () => ({
       llm: {
-        openai: !!process.env.OPENAI_API_KEY,
+        ollama: process.env.OLLAMA_BASE_URL || "http://localhost:11434/v1",
         claude: !!process.env.ANTHROPIC_API_KEY,
       },
       video: {

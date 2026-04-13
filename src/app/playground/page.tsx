@@ -16,7 +16,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function PlaygroundPage() {
   const [prompt, setPrompt] = useState("");
-  const [provider, setProvider] = useState("openai");
+  const [provider, setProvider] = useState("ollama");
   const [result, setResult] = useState("");
   const [generating, setGenerating] = useState(false);
 
@@ -67,7 +67,7 @@ export default function PlaygroundPage() {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="openai">OpenAI</SelectItem>
+                <SelectItem value="ollama">Ollama (Local)</SelectItem>
                 <SelectItem value="claude">Claude</SelectItem>
               </SelectContent>
             </Select>

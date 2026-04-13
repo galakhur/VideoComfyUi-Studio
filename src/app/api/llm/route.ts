@@ -13,7 +13,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const validProviders: LLMProvider[] = ["openai", "claude"];
+  const validProviders: LLMProvider[] = ["ollama", "claude"];
   if (!validProviders.includes(provider)) {
     return NextResponse.json(
       { error: `Invalid provider. Use: ${validProviders.join(", ")}` },

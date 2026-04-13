@@ -8,7 +8,7 @@ export async function GET() {
 
   return NextResponse.json({
     llm: [
-      { id: "openai", name: "OpenAI", configured: !!process.env.OPENAI_API_KEY },
+      { id: "ollama", name: "Ollama (Local)", configured: !!process.env.OLLAMA_BASE_URL, url: process.env.OLLAMA_BASE_URL || "http://localhost:11434/v1" },
       { id: "claude", name: "Claude", configured: !!process.env.ANTHROPIC_API_KEY },
     ],
     image: [

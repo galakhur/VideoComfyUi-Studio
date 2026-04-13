@@ -28,7 +28,7 @@ interface ProjectContext {
 
 export async function generateSuggestions(
   project: ProjectContext,
-  provider: LLMProvider = "openai"
+  provider: LLMProvider = "ollama"
 ): Promise<Suggestion[]> {
   if (project.museControlLevel === "OBSERVER") {
     return [];

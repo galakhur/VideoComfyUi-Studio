@@ -41,7 +41,7 @@ export type SuggestionType =
   | "VISUAL_STYLE"
   | "PACING";
 
-export type LLMProvider = "openai" | "claude";
+export type LLMProvider = "ollama" | "claude";
 
 export type ComfyWorkflowCategory = "image_draft" | "image_refine" | "video";
 

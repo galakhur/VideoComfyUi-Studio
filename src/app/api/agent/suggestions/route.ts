@@ -49,7 +49,7 @@ export async function POST(request: Request) {
         })),
         characterCount: project._count.characters,
       },
-      (provider as LLMProvider) || "openai"
+      (provider as LLMProvider) || "ollama"
     );
 
     // Save suggestions to DB

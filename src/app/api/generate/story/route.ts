@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const llmProvider: LLMProvider = provider || "openai";
+  const llmProvider: LLMProvider = provider || "ollama";
   const userPrompt = buildStorylinePrompt(description, genre, themes);
 
   const encoder = new TextEncoder();

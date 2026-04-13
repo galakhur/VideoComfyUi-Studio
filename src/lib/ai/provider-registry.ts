@@ -24,8 +24,8 @@ export async function generateText(
   messages: LLMMessage[],
   options: LLMOptions = {}
 ): Promise<LLMResponse> {
-  if (provider === "openai") {
-    return generateOpenAI(messages, options);
+  if (provider === "ollama") {
+    return generateOllama(messages, options);
   } else if (provider === "claude") {
     return generateClaude(messages, options);
   }
@@ -37,8 +37,8 @@ export async function* generateStream(
   messages: LLMMessage[],
   options: LLMOptions = {}
 ): AsyncGenerator<string> {
-  if (provider === "openai") {
-    yield* streamOpenAI(messages, options);
+  if (provider === "ollama") {
+    yield* streamOllama(messages, options);
   } else if (provider === "claude") {
     yield* streamClaude(messages, options);
   } else {
@@ -46,12 +46,18 @@ export async function* generateStream(
   }
 }
 
-async function generateOpenAI(
+// Ollama uses OpenAI-compatible API
+function getOllamaClient(): OpenAI {
+  const baseURL = process.env.OLLAMA_BASE_URL || "http://localhost:11434/v1";
+  return new OpenAI({ baseURL, apiKey: "ollama" });
+}
+
+async function generateOllama(
   messages: LLMMessage[],
   options: LLMOptions
 ): Promise<LLMResponse> {
-  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-  const model = options.model || "gpt-4o";
+  const client = getOllamaClient();
+  const model = options.model || process.env.OLLAMA_MODEL || "llama3.1";
 
   const response = await client.chat.completions.create({
     model,
@@ -104,12 +110,12 @@ async function generateClaude(
   };
 }
 
-async function* streamOpenAI(
+async function* streamOllama(
   messages: LLMMessage[],
   options: LLMOptions
 ): AsyncGenerator<string> {
-  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-  const model = options.model || "gpt-4o";
+  const client = getOllamaClient();
+  const model = options.model || process.env.OLLAMA_MODEL || "llama3.1";
 
   const stream = await client.chat.completions.create({
     model,

@@ -65,6 +65,6 @@ export const DEFAULT_INFERENCE_SETTINGS = {
   temperature: 0.7,
   maxTokens: 4096,
   topP: 1,
-  defaultProvider: "openai" as const,
-  defaultModel: "gpt-4o",
+  defaultProvider: "ollama" as const,
+  defaultModel: "llama3.1",
 };
